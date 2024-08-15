@@ -185,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     double bmi = (_weight) / (_height/100)*(_height/100);
                     Navigator.of(context)
-                        .pushReplacement(MaterialPageRoute(builder: (context) {
+                        .push(MaterialPageRoute(builder: (context) {
                       return  ResultScreen(result: bmi,);
                     }));
                   },
