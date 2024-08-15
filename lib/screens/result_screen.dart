@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ResultScreen extends StatefulWidget {
-  const ResultScreen({super.key});
+  const ResultScreen({super.key, required this.result});
+  final double result;
 
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -13,7 +14,7 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff1C2135),
+      backgroundColor:const Color(0xff1C2135),
       appBar: AppBar(
         backgroundColor: const Color(0xff24263B),
         title: const Text(
@@ -26,12 +27,13 @@ class _ResultScreenState extends State<ResultScreen> {
       body: Padding(
         padding: const EdgeInsets.all(0),
         child: Column(
-         
           children: [
-           const Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(width: 30,),
+                SizedBox(
+                  width: 30,
+                ),
                 Text(
                   "Your Results",
                   textAlign: TextAlign.start,
@@ -44,21 +46,20 @@ class _ResultScreenState extends State<ResultScreen> {
                 Spacer()
               ],
             ),
-
             Expanded(
               flex: 5,
               child: Container(
-                margin:const EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 height: 700,
                 width: 400,
-                decoration:const BoxDecoration(
+                decoration: const BoxDecoration(
                     color: const Color(0xff333244),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                child:const Center(
-                  child: const Column(
+                child:  Center(
+                  child:  Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
+                      const Text(
                         "Normal",
                         style: TextStyle(
                             color: Color(0xff21BF73),
@@ -66,13 +67,13 @@ class _ResultScreenState extends State<ResultScreen> {
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        "19.2",
-                        style: TextStyle(
+                        "${widget.result.roundToDouble()}",
+                        style:const TextStyle(
                             color: Colors.white,
                             fontSize: 64,
                             fontWeight: FontWeight.w700),
                       ),
-                      Text(
+                    const  Text(
                         "You Have A Normal Body Weight , Good Job",
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -85,9 +86,8 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
               ),
             ),
-
-             Expanded(
-               child: SizedBox(
+            Expanded(
+              child: SizedBox(
                 child: Container(
                   height: 100,
                   width: double.infinity,
@@ -95,10 +95,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   color: const Color(0xffE83D67),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacement(MaterialPageRoute(builder: (context) {
-                        return const HomeScreen();
-                      }));
+                      Navigator.of(context).pop();
                     },
                     child: const Text(
                       "Re Calculate",
@@ -109,8 +106,8 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
                 ),
-                           ),
-             )
+              ),
+            )
           ],
         ),
       ),

@@ -12,7 +12,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _height = 0;
+  int _height = 50;
+  int _age = 1;
+  int _weight = 20;
+  bool isMale = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Expanded(
+            Expanded(
                 child: SizedBox(
               height: 200,
               child: Row(
@@ -40,10 +44,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   Gender(
                     gender: "Male",
                     image: "assets/images/male.png",
+                    isSelected: isMale,
+                    select: () {
+                      setState(() {
+                        isMale = true;
+                      });
+                    },
                   ),
                   Gender(
                     gender: "Female",
                     image: "assets/images/female.png",
+                    isSelected: !isMale,
+                    select: () {
+                      setState(() {
+                        isMale = false;
+                      });
+                    },
+
                   )
                 ],
               ),
@@ -84,8 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     Slider(
-                        min: 0,
-                        max: 400,
+                        min: 50,
+                        max: 300,
                         value: _height.toDouble(),
                         divisions: 400,
                         allowedInteraction: SliderInteraction.tapAndSlide,
@@ -103,15 +120,57 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 10,
             ),
-            const Expanded(
-              child: const SizedBox(
+            Expanded(
+              child: SizedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     weight_age(
                       title: "Weight",
+                      amount: _weight,
+                      onadd: () {
+                        if (_weight > 300) {
+                          setState(() {
+                            _weight = 300;
+                          });
+                        } else {
+                          setState(() {
+                            _weight += 1;
+                          });
+                        }
+                      },
+                      onminus: () {
+                        if (_weight <= 20) {
+                          setState(() {
+                            _weight = 20;
+                          });
+                        } else {
+                          setState(() {
+                            _weight -= 1;
+                          });
+                        }
+                      },
                     ),
-                    weight_age(title: "Age")
+                    weight_age(
+                      title: "Age",
+                      amount: _age,
+                      onadd: () {
+                        setState(() {
+                          _age += 1;
+                        });
+                      },
+                      onminus: () {
+                        if (_age <= 1) {
+                          setState(() {
+                            _age = 1;
+                          });
+                        } else {
+                          setState(() {
+                            _age -= 1;
+                          });
+                        }
+                      },
+                    )
                   ],
                 ),
               ),
@@ -124,9 +183,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: const Color(0xffE83D67),
                 child: TextButton(
                   onPressed: () {
+                    double bmi = (_weight) / (_height/100)*(_height/100);
                     Navigator.of(context)
                         .pushReplacement(MaterialPageRoute(builder: (context) {
-                      return const ResultScreen();
+                      return  ResultScreen(result: bmi,);
                     }));
                   },
                   child: const Text(

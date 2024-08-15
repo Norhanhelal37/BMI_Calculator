@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class weight_age extends StatefulWidget {
-  const weight_age({super.key, required this.title});
+  const weight_age({super.key, required this.title, required this.amount, required this.onadd,required this.onminus});
   final String title;
+  final int amount;
+  final Function() onadd;
+  final Function() onminus;
 
   @override
   State<weight_age> createState() => _weight_ageState();
 }
 
 class _weight_ageState extends State<weight_age> {
-  int _value = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +31,7 @@ class _weight_ageState extends State<weight_age> {
                 fontWeight: FontWeight.w200),
           ),
           Text(
-            "$_value",
+            "${widget.amount}",
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.w700, fontSize: 40),
           ),
@@ -37,14 +39,8 @@ class _weight_ageState extends State<weight_age> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                onPressed: () {
-                  setState(() {
-                    _value -= 1;
-                    if (_value < 0) {
-                      _value = 0;
-                    }
-                  });
-                },
+                onPressed: widget.onminus,
+              
                 icon: const Icon(
                   Icons.remove,
                   color: Colors.white,
@@ -54,11 +50,7 @@ class _weight_ageState extends State<weight_age> {
                     backgroundColor: WidgetStatePropertyAll(Color(0xff8B8C9E))),
               ),
               IconButton(
-                onPressed: () {
-                  setState(() {
-                    _value += 1;
-                  });
-                },
+                onPressed:widget.onadd ,
                 icon: const Icon(
                   Icons.add,
                   color: Colors.white,
