@@ -1,6 +1,5 @@
-import 'package:bmi/screens/home.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
