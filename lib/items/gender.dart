@@ -24,24 +24,24 @@ class _GenderState extends State<Gender> {
     return GestureDetector(
       onTap: widget.select,
       child: Container(
-        height: 160,
-        width: 130,
-        margin: EdgeInsets.all(10),
+        height: MediaQuery.sizeOf(context).height*.2,
+        width: MediaQuery.sizeOf(context).width*.45,
+        margin:const EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color: widget.isSelected ? Color(0xff333244):Color(0xff24263B),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+            color: widget.isSelected ?const Color(0xff333244):const Color(0xff24263B),
+            borderRadius:const BorderRadius.all(Radius.circular(10))),
         child: Column(
           children: [
             Image.asset(
               widget.image,
-              height: 100,
-              width: 66,
+              height: 120,
+              width:70,
             ),
             Text(
               widget.gender,
               style: const TextStyle(
                   color: Color(0xff8B8C9E),
-                  fontSize: 20,
+                  fontSize: 25,
                   fontWeight: FontWeight.w400),
             )
           ],

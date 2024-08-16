@@ -15,8 +15,8 @@ class _weight_ageState extends State<weight_age> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 174,
-      width: 145,
+      height: MediaQuery.sizeOf(context).height*.25,
+        width: MediaQuery.sizeOf(context).width*.45,
       decoration: const BoxDecoration(
           color: Color(0xff24263B),
           borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -27,8 +27,8 @@ class _weight_ageState extends State<weight_age> {
             widget.title,
             style: const TextStyle(
                 color: Color(0xff8B8C9E),
-                fontSize: 20,
-                fontWeight: FontWeight.w200),
+                fontSize: 25,
+                fontWeight: FontWeight.w300),
           ),
           Text(
             "${widget.amount}",

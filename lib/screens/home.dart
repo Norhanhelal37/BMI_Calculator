@@ -68,20 +68,20 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
                 child: SizedBox(
               child: Container(
-                height: 199,
-                width: 330,
+                height: MediaQuery.sizeOf(context).height*.5,
+                width:MediaQuery.sizeOf(context).width,
                 decoration: const BoxDecoration(
                     color: const Color(0xff24263B),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const Text(
                       "Height",
                       style: TextStyle(
                         color: Color(0xff8B8C9E),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w200,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                     Row(
@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: const Color(0xffE83D67),
                 child: TextButton(
                   onPressed: () {
-                    double bmi = (_weight) / (_height/100)*(_height/100);
+                    double bmi = (_weight) / ((_height/100)*(_height/100));
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
                       return  ResultScreen(result: bmi,);
