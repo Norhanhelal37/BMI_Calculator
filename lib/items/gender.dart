@@ -25,7 +25,7 @@ class _GenderState extends State<Gender> {
       onTap: widget.select,
       child: Container(
         height: MediaQuery.sizeOf(context).height*.2,
-        width: MediaQuery.sizeOf(context).width*.45,
+        width: MediaQuery.sizeOf(context).width*.4,
         margin:const EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: widget.isSelected ?const Color(0xff333244):const Color(0xff24263B),
@@ -34,8 +34,8 @@ class _GenderState extends State<Gender> {
           children: [
             Image.asset(
               widget.image,
-              height: 120,
-              width:70,
+              height: 90,
+              width:60,
             ),
             Text(
               widget.gender,
